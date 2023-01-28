@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wordle</title>
     <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
 </head>
 <body>
-    <div class="guess-grid">
+    <div class="header">
+        <p>Wordle</p>
+    </div>
+    <div data-alert-container class="alert-container">
+    </div>
+    <div data-guess-grid class="guess-grid">
         <div class="tile"></div>
         <div class="tile"></div>
         <div class="tile"></div>
@@ -40,7 +47,7 @@
         <div class="tile"></div>
         <div class="tile"></div> 
     </div>
-    <div class="keyboard">
+    <div data-keyboard class="keyboard">
         <button class="key" data-key="Q">Q</button>
         <button class="key" data-key="W">W</button>
         <button class="key" data-key="E">E</button>

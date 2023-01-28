@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap');
+
 *, *::after, *::before{
     box-sizing: border-box;
-    font-family: Arial;
+    /* font-family: Arial; */
 }
 body{
     background-color: hsl(240, 3%, 7%);
@@ -10,6 +13,17 @@ body{
     margin: 0;
     padding: 1em;
     font-size: clamp(.5rem, 2.5vmin, 1.5rem);
+}
+.header{
+    color: white;
+    display: flex;
+    justify-content: center;
+    font-family: 'Oswald';
+    font-weight: bold;
+    font-size: larger;
+    margin-top: -28px;
+    margin-bottom: -8px;
+    padding: 0;
 }
 .keyboard{
     display: grid;
@@ -29,6 +43,8 @@ body{
     background-color: hsl(var(--hue, 200), var(--saturation, 1%), calc(var(--lightness-offset, 0%) + var(--lightness, 51%)));
     color: white;
     fill: white;
+    font-family: 'Oswald';
+    font-size: 18px;
     text-transform: uppercase;
     border-radius: 0.25em;
     cursor: pointer;
@@ -38,7 +54,7 @@ body{
     grid-column: span 3;
 }
 .key svg{
-    width: 1.75em;
+    width: 1em;
     height: 1.75em;
 }
 .key:hover, .key:focus{
@@ -67,16 +83,18 @@ body{
     gap: .25em;
     margin-bottom: 1em;
 }
-.guess-grid .tile{
+.tile{
     font-size: 2em;
     color: white;
     border: 0.05em solid hsl(240, 2%, 23%);
     text-transform: uppercase;
-    font: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font: bolder;
     display: flex;
     justify-content: center;
     align-items: center;
     user-select: none;
+    transition: transform 250ms linear;
 }
 
 .tile[data-state="active"]{
@@ -93,4 +111,83 @@ body{
 .tile[data-state="correct"]{
     border: none;
     background-color: hsl(115, 29%, 43%);
+}
+.tile.shake{
+    animation: shake 250ms ease-in-out;
+}
+.tile.flip{
+    transform: rotateX(90deg);
+}
+.tile.shake{
+    animation: shake 250ms ease-in-out;
+}
+.tile.dance{
+    animation: dance 500ms ease-in-out;
+}
+@keyframes shake {
+    10%{
+        transform: translateX(-5%);
+    }
+    30%{
+        transform: translateX(5%);
+    }
+    50%{
+        transform: translateX(-7.5%);
+    }
+    70%{
+        transform: translateX(7.5%);
+    }
+    90%{
+        transform: translateX(-5%);
+    }
+    100%{
+        transform: translateX(0);
+    }
+}
+
+@keyframes dance {
+    20%{
+        transform: translateY(-50%);
+    }
+    40%{
+        transform: translateY(5%);
+    }
+    60%{
+        transform: translateY(-25%);
+    }
+    80%{
+        transform: translateY(2.5%);
+    }
+    90%{
+        transform: translateY(-5%);
+    }
+    100%{
+        transform: translateY(0);
+    }
+}
+
+.alert-container{
+    position: fixed;
+    top: 10vh;
+    left: 50vw;
+    transform: translate(-50%);
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.alert{
+    pointer-events: none;
+    background-color: hsl(204, 7%, 85%);
+    padding: 0.75em;
+    border-radius: 0.25em;
+    opacity: 1;
+    transform: opacity 500ms ease-in-out;
+    margin-bottom: .5em;
+}
+.alert:last-child{
+    margin-bottom: 0;
+}
+.alert.hide{
+    opacity: 0;
 }
